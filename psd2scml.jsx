@@ -1,5 +1,7 @@
 #target photoshop
 
+#include "JSON-js/json.js"
+
 function main()
 {
 	if (!documents.length) return;
@@ -52,6 +54,8 @@ function main()
 					var file = {};
 					file.id = file_id++;
 					file.name = path_name + base_name + ".png";
+					file.path_name = path_name;
+					file.base_name = base_name;
 					file.width = xmax - xmin;
 					file.height = ymax - ymin;
 
@@ -100,7 +104,7 @@ function main()
 			var parseBone = function (bone, parent, group)
 			{
 				bone.id = bone_id++;
-				bone.parent = (parent)?(parent.id):(-1);
+				bone.parent = parent;
 				bone.name = group.name;
 
 				// look for an art layer named "bone"
@@ -215,13 +219,13 @@ function main()
 				});
 				if (bone)
 				{
-					object.parent = bone.id;
+					object.parent = bone;
 					object.local_x = object.x - bone.x;
 					object.local_y = object.y - bone.y;
 				}
 				else
 				{
-					object.parent = -1;
+					object.parent = null;
 					object.local_x = object.x;
 					object.local_y = object.y;
 				}
@@ -267,7 +271,7 @@ function main()
 				scml.writeln(
 					"\t\t\t\t\t<bone_ref" + 
 					" id=\"" + bone.id + "\"" + 
-					((bone.parent != -1)?(" parent=\"" + bone.parent + "\""):("")) + 
+					((bone.parent)?(" parent=\"" + bone.parent.id + "\""):("")) + 
 					" timeline=\"" + timeline_id + "\"" + 
 					" key=\"0\"" + 
 					"/>");
@@ -285,7 +289,7 @@ function main()
 			scml.writeln(
 				"\t\t\t\t\t<object_ref" + 
 				" id=\"" + object.id + "\"" + 
-				((object.parent != -1)?(" parent=\"" + object.parent + "\""):("")) + 
+				((object.parent)?(" parent=\"" + object.parent.id + "\""):("")) + 
 				" timeline=\"" + timeline_id + "\"" + 
 				" key=\"0\"" + 
 				" z_index=\"" + object.id + "\"" + 
@@ -330,6 +334,66 @@ function main()
 	}
 	/* scope */ )();
 
+	/* scope */ ;(function () // generate Spine JSON skeleton
+	{
+		var json = {};
+		json.bones = {};
+		if (root_bone)
+		{
+			var writeBone = function (bone)
+			{
+				var json_bone = json.bones[bone.name] = {};
+				if (bone.parent)
+				{
+					json_bone.parent = bone.parent.name;
+				}
+				json_bone.x = bone.local_x.toFixed(2);
+				json_bone.y = bone.local_y.toFixed(2);
+
+				for (var i = 0, ct = bone.bones.length; i < ct; ++i)
+				{
+					writeBone(bone.bones[i]);
+				}
+			}
+			writeBone(root_bone);
+		}
+		json.slots = {};
+		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
+		{
+			var object = objects[object_i];
+			var folder = folders[object.folder];
+			var file = folder.files[object.file];
+			var json_slot = json.slots[file.base_name] = {};
+			if (object.parent)
+			{
+				json_slot.bone = object.parent.name;
+			}
+			json_slot.attachment = file.base_name;
+		}
+		json.skins = {};
+		var skin = json.skins[doc.name.replace(".psd", "")] = {};
+		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
+		{
+			var object = objects[object_i];
+			var folder = folders[object.folder];
+			var file = folder.files[object.file];
+			var json_attachment = skin[file.base_name] = {};
+			var json_file = json_attachment[file.base_name] = {};
+			var x = object.local_x + (file.width / 2);
+			var y = object.local_y - (file.height / 2);
+			json_file.x = x.toFixed(2);
+			json_file.y = y.toFixed(2);
+			json_file.name = file.path_name + file.base_name;
+		}
+
+		var json_file = new File(out_path + "/" + doc.name.replace(".psd", "-skeleton.json"));
+		json_file.encoding = "UTF-8";
+		json_file.open("w");
+		json_file.write(JSON.stringify(json, null, '\t'));
+		json_file.close();
+	}
+	/* scope */ )();
+
 	/* scope */ ;(function () // generate PNG's
 	{
 		var clone_doc = doc.duplicate();
@@ -371,6 +435,11 @@ function main()
 					trim_doc.trim(TrimType.TRANSPARENT, true, true, true, true);
 					var png_save_options = new PNGSaveOptions();
 					trim_doc.saveAs(png, png_save_options, true, Extension.LOWERCASE);
+					//var export_options_sfw = new ExportOptionsSaveForWeb();
+					//export_options_sfw.format = SaveDocumentType.PNG;
+					//export_options_sfw.PNG8 = false;
+					//export_options_sfw.quality = 100;
+					//trim_doc.exportDocument(png, ExportType.SAVEFORWEB, export_options_sfw);
 					trim_doc.close(SaveOptions.DONOTSAVECHANGES);
 					layer.visible = false;
 				}
