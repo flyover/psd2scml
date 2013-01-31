@@ -384,6 +384,8 @@ function main()
 			json_file.x = x.toFixed(2);
 			json_file.y = y.toFixed(2);
 			json_file.name = file.path_name + file.base_name;
+			json_file.width = file.width;
+			json_file.height = file.height;
 		}
 
 		var json_file = new File(out_path + "/" + doc.name.replace(".psd", "-skeleton.json"));
