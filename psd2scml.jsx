@@ -242,7 +242,7 @@ function main()
 		scml.encoding = "UTF-8";
 		scml.open("w");
 		scml.writeln("<?xml version=\"1.0\" encoding=\"" + scml.encoding + "\"?>");
-		scml.writeln("<spriter_data scml_version=\"1.0\" generator=\"BrashMonkey Spriter\" generator_version=\"a4.1\">");
+		scml.writeln("<spriter_data scml_version=\"1.0\" generator=\"psd2scml.jsx\" generator_version=\"pre1.0\">");
 		// folder
 		for (var folder_i = 0, folder_ct = folders.length; folder_i < folder_ct; ++folder_i)
 		{
@@ -252,7 +252,7 @@ function main()
 			for (var file_i = 0, file_ct = folder.files.length; file_i < file_ct; ++file_i)
 			{
 				var file = folder.files[file_i];
-				scml.writeln("\t\t<file id=\"" + file.id + "\" name=\"" + file.name + "\" width=\"" + file.width + "\" height=\"" + file.height + "\"/>");
+				scml.writeln("\t\t<file id=\"" + file.id + "\" name=\"" + file.name + "\" width=\"" + file.width.toFixed(0) + "\" height=\"" + file.height.toFixed(0) + "\"/>");
 			}
 			scml.writeln("\t</folder>");
 		}
@@ -306,7 +306,7 @@ function main()
 			{
 				scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + bone.name + "\">");
 				scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
-				scml.writeln("\t\t\t\t\t<bone x=\"" + bone.local_x + "\" y=\"" + bone.local_y + "\" angle=\"0\" scale_x=\"1\" scale_y=\"1\"/>");
+				scml.writeln("\t\t\t\t\t<bone x=\"" + bone.local_x.toFixed(2) + "\" y=\"" + bone.local_y.toFixed(2) + "\" angle=\"0\" scale_x=\"1\" scale_y=\"1\"/>");
 				scml.writeln("\t\t\t\t</key>");
 				scml.writeln("\t\t\t</timeline>");
 				++timeline_id;
@@ -322,7 +322,7 @@ function main()
 			var object = objects[object_i];
 			scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\">");
 			scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
-			scml.writeln("\t\t\t\t\t<object folder=\"" + object.folder + "\" file=\"" + object.file + "\" x=\"" + object.local_x + "\" y=\"" + object.local_y + "\"/>");
+			scml.writeln("\t\t\t\t\t<object folder=\"" + object.folder + "\" file=\"" + object.file + "\" x=\"" + object.local_x.toFixed(2) + "\" y=\"" + object.local_y.toFixed(2) + "\"/>");
 			scml.writeln("\t\t\t\t</key>");
 			scml.writeln("\t\t\t</timeline>");
 			++timeline_id;
@@ -337,18 +337,22 @@ function main()
 	/* scope */ ;(function () // generate Spine JSON skeleton
 	{
 		var json = {};
-		json.bones = {};
+		//json.bones = {}; // version < 1.0.9
+		json.bones = [];
 		if (root_bone)
 		{
 			var writeBone = function (bone)
 			{
-				var json_bone = json.bones[bone.name] = {};
+				//var json_bone = json.bones[bone.name] = {}; // version < 1.0.9
+				var json_bone = {};
+				json.bones.push(json_bone);
+				json_bone.name = bone.name;
 				if (bone.parent)
 				{
 					json_bone.parent = bone.parent.name;
 				}
-				json_bone.x = bone.local_x.toFixed(2);
-				json_bone.y = bone.local_y.toFixed(2);
+				json_bone.x = bone.local_x;
+				json_bone.y = bone.local_y;
 
 				for (var i = 0, ct = bone.bones.length; i < ct; ++i)
 				{
@@ -357,13 +361,17 @@ function main()
 			}
 			writeBone(root_bone);
 		}
-		json.slots = {};
+		//json.slots = {}; // version < 1.0.9
+		json.slots = [];
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
 		{
 			var object = objects[object_i];
 			var folder = folders[object.folder];
 			var file = folder.files[object.file];
-			var json_slot = json.slots[file.base_name] = {};
+			//var json_slot = json.slots[file.base_name] = {}; // version < 1.0.9
+			var json_slot = {};
+			json.slots.push(json_slot);
+			json_slot.name = file.base_name;
 			if (object.parent)
 			{
 				json_slot.bone = object.parent.name;
@@ -381,11 +389,11 @@ function main()
 			var json_file = json_attachment[file.base_name] = {};
 			var x = object.local_x + (file.width / 2);
 			var y = object.local_y - (file.height / 2);
-			json_file.x = x.toFixed(2);
-			json_file.y = y.toFixed(2);
+			json_file.x = x;
+			json_file.y = y;
 			json_file.name = file.path_name + file.base_name;
-			json_file.width = file.width;
-			json_file.height = file.height;
+			json_file.width = 0 | file.width;
+			json_file.height = 0 | file.height;
 		}
 
 		var json_file = new File(out_path + "/" + doc.name.replace(".psd", "-skeleton.json"));
