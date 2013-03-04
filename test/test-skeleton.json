@@ -1,0 +1,329 @@
+{
+	"bones": [
+		{
+			"name": "root",
+			"x": 122.5,
+			"y": -479.5
+		},
+		{
+			"name": "pelvis",
+			"parent": "root",
+			"x": 0,
+			"y": 211
+		},
+		{
+			"name": "torso",
+			"parent": "pelvis",
+			"x": 0,
+			"y": 30
+		},
+		{
+			"name": "head",
+			"parent": "torso",
+			"x": 1,
+			"y": 129
+		},
+		{
+			"name": "arm_upper_l",
+			"parent": "torso",
+			"x": 56,
+			"y": 133
+		},
+		{
+			"name": "arm_lower_l",
+			"parent": "arm_upper_l",
+			"x": -1,
+			"y": -70
+		},
+		{
+			"name": "hand_l",
+			"parent": "arm_lower_l",
+			"x": 0,
+			"y": -65
+		},
+		{
+			"name": "arm_upper_r",
+			"parent": "torso",
+			"x": -57,
+			"y": 121
+		},
+		{
+			"name": "arm_lower_r",
+			"parent": "arm_upper_r",
+			"x": -1,
+			"y": -72
+		},
+		{
+			"name": "hand_r",
+			"parent": "arm_lower_r",
+			"x": 0,
+			"y": -69
+		},
+		{
+			"name": "leg_upper_l",
+			"parent": "pelvis",
+			"x": 27,
+			"y": -10
+		},
+		{
+			"name": "leg_lower_l",
+			"parent": "leg_upper_l",
+			"x": -2,
+			"y": -85
+		},
+		{
+			"name": "foot_l",
+			"parent": "leg_lower_l",
+			"x": 1,
+			"y": -64
+		},
+		{
+			"name": "leg_upper_r",
+			"parent": "pelvis",
+			"x": -26,
+			"y": -13
+		},
+		{
+			"name": "leg_lower_r",
+			"parent": "leg_upper_r",
+			"x": -2,
+			"y": -88.0000000000001
+		},
+		{
+			"name": "foot_r",
+			"parent": "leg_lower_r",
+			"x": 0,
+			"y": -63
+		}
+	],
+	"slots": [
+		{
+			"name": "arm_lower_l",
+			"bone": "arm_lower_l",
+			"attachment": "arm_lower_l"
+		},
+		{
+			"name": "hand_l",
+			"bone": "hand_l",
+			"attachment": "hand_l"
+		},
+		{
+			"name": "arm_upper_l",
+			"bone": "arm_upper_l",
+			"attachment": "arm_upper_l"
+		},
+		{
+			"name": "leg_lower_l",
+			"bone": "leg_lower_l",
+			"attachment": "leg_lower_l"
+		},
+		{
+			"name": "foot_l",
+			"bone": "foot_l",
+			"attachment": "foot_l"
+		},
+		{
+			"name": "leg_upper_l",
+			"bone": "leg_upper_l",
+			"attachment": "leg_upper_l"
+		},
+		{
+			"name": "torso",
+			"bone": "torso",
+			"attachment": "torso"
+		},
+		{
+			"name": "pelvis",
+			"bone": "pelvis",
+			"attachment": "pelvis"
+		},
+		{
+			"name": "head",
+			"bone": "head",
+			"attachment": "head"
+		},
+		{
+			"name": "leg_lower_r",
+			"bone": "leg_lower_r",
+			"attachment": "leg_lower_r"
+		},
+		{
+			"name": "foot_r",
+			"bone": "foot_r",
+			"attachment": "foot_r"
+		},
+		{
+			"name": "leg_upper_r",
+			"bone": "leg_upper_r",
+			"attachment": "leg_upper_r"
+		},
+		{
+			"name": "arm_lower_r",
+			"bone": "arm_lower_r",
+			"attachment": "arm_lower_r"
+		},
+		{
+			"name": "item",
+			"bone": "hand_r",
+			"attachment": "item"
+		},
+		{
+			"name": "hand_r",
+			"bone": "hand_r",
+			"attachment": "hand_r"
+		},
+		{
+			"name": "arm_upper_r",
+			"bone": "arm_upper_r",
+			"attachment": "arm_upper_r"
+		}
+	],
+	"skins": {
+		"test": {
+			"arm_lower_l": {
+				"arm_lower_l": {
+					"x": 0,
+					"y": -32,
+					"name": "objects/arm_lower_l",
+					"width": 33,
+					"height": 93
+				}
+			},
+			"hand_l": {
+				"hand_l": {
+					"x": 1.4210854715202e-14,
+					"y": -18,
+					"name": "objects/hand_l",
+					"width": 43,
+					"height": 43
+				}
+			},
+			"arm_upper_l": {
+				"arm_upper_l": {
+					"x": 0,
+					"y": -31,
+					"name": "objects/arm_upper_l",
+					"width": 43,
+					"height": 83
+				}
+			},
+			"leg_lower_l": {
+				"leg_lower_l": {
+					"x": 1.00000000000001,
+					"y": -33,
+					"name": "objects/leg_lower_l",
+					"width": 32,
+					"height": 83
+				}
+			},
+			"foot_l": {
+				"foot_l": {
+					"x": 6,
+					"y": -12.5000000000001,
+					"name": "objects/foot_l",
+					"width": 53,
+					"height": 28
+				}
+			},
+			"leg_upper_l": {
+				"leg_upper_l": {
+					"x": 0,
+					"y": -38,
+					"name": "objects/leg_upper_l",
+					"width": 43,
+					"height": 103
+				}
+			},
+			"torso": {
+				"torso": {
+					"x": 1.00000000000001,
+					"y": 61,
+					"name": "objects/torso",
+					"width": 103,
+					"height": 153
+				}
+			},
+			"pelvis": {
+				"pelvis": {
+					"x": -2,
+					"y": 5,
+					"name": "objects/pelvis",
+					"width": 73,
+					"height": 53
+				}
+			},
+			"head": {
+				"head": {
+					"x": 0,
+					"y": 36,
+					"name": "objects/head",
+					"width": 53,
+					"height": 83
+				}
+			},
+			"leg_lower_r": {
+				"leg_lower_r": {
+					"x": 0,
+					"y": -31,
+					"name": "objects/leg_lower_r",
+					"width": 33,
+					"height": 83
+				}
+			},
+			"foot_r": {
+				"foot_r": {
+					"x": 6.00000000000001,
+					"y": -12.5,
+					"name": "objects/foot_r",
+					"width": 52,
+					"height": 27
+				}
+			},
+			"leg_upper_r": {
+				"leg_upper_r": {
+					"x": -1.99999999999999,
+					"y": -37.5,
+					"name": "objects/leg_upper_r",
+					"width": 43,
+					"height": 102
+				}
+			},
+			"arm_lower_r": {
+				"arm_lower_r": {
+					"x": 1,
+					"y": -32,
+					"name": "objects/arm_lower_r",
+					"width": 32,
+					"height": 92
+				}
+			},
+			"item": {
+				"item": {
+					"x": -1.50000000000001,
+					"y": -49.5,
+					"name": "objects/item",
+					"width": 61,
+					"height": 42
+				}
+			},
+			"hand_r": {
+				"hand_r": {
+					"x": -1,
+					"y": -20.5,
+					"name": "objects/hand_r",
+					"width": 43,
+					"height": 44
+				}
+			},
+			"arm_upper_r": {
+				"arm_upper_r": {
+					"x": 0.50000000000001,
+					"y": -33,
+					"name": "objects/arm_upper_r",
+					"width": 44,
+					"height": 83
+				}
+			}
+		}
+	}
+}
