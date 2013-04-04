@@ -162,6 +162,11 @@ function main()
 	{
 		var findBone = function (bone, callback)
 		{
+			if (!bone)
+			{
+				return null;
+			}
+
 			if (callback(bone))
 			{
 				return bone;
