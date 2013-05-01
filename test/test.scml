@@ -18,7 +18,7 @@
 		<file id="14" name="objects/hand_l.png" width="43" height="43"/>
 		<file id="15" name="objects/arm_lower_l.png" width="33" height="93"/>
 	</folder>
-	<entity id="0" name="">
+	<entity id="0" name="test">
 		<animation id="0" name="default" length="1000" looping="false">
 			<mainline>
 				<key id="0">
@@ -56,162 +56,162 @@
 					<object_ref id="15" parent="7" timeline="31" key="0" z_index="15"/>
 				</key>
 			</mainline>
-			<timeline id="0" name="root">
+			<timeline id="0" name="root" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="122.50" y="-479.50" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="1" name="pelvis">
+			<timeline id="1" name="pelvis" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="0.00" y="211.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="2" name="torso">
+			<timeline id="2" name="torso" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="0.00" y="30.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="3" name="head">
+			<timeline id="3" name="head" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="1.00" y="129.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="4" name="arm_upper_l">
+			<timeline id="4" name="arm_upper_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="56.00" y="133.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="5" name="arm_lower_l">
+			<timeline id="5" name="arm_lower_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-1.00" y="-70.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="6" name="hand_l">
+			<timeline id="6" name="hand_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="0.00" y="-65.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="7" name="arm_upper_r">
+			<timeline id="7" name="arm_upper_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-57.00" y="121.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="8" name="arm_lower_r">
+			<timeline id="8" name="arm_lower_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-1.00" y="-72.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="9" name="hand_r">
+			<timeline id="9" name="hand_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="0.00" y="-69.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="10" name="leg_upper_l">
+			<timeline id="10" name="leg_upper_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="27.00" y="-10.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="11" name="leg_lower_l">
+			<timeline id="11" name="leg_lower_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-2.00" y="-85.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="12" name="foot_l">
+			<timeline id="12" name="foot_l" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="1.00" y="-64.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="13" name="leg_upper_r">
+			<timeline id="13" name="leg_upper_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-26.00" y="-13.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="14" name="leg_lower_r">
+			<timeline id="14" name="leg_lower_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="-2.00" y="-88.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="15" name="foot_r">
+			<timeline id="15" name="foot_r" object_type="bone">
 				<key id="0" spin="0">
 					<bone x="0.00" y="-63.00" angle="0" scale_x="1" scale_y="1"/>
 				</key>
 			</timeline>
-			<timeline id="16">
+			<timeline id="16" name="object-arm_lower_l">
 				<key id="0" spin="0">
 					<object folder="0" file="15" x="-16.50" y="14.50"/>
 				</key>
 			</timeline>
-			<timeline id="17">
+			<timeline id="17" name="object-hand_l">
 				<key id="0" spin="0">
 					<object folder="0" file="14" x="-21.50" y="3.50"/>
 				</key>
 			</timeline>
-			<timeline id="18">
+			<timeline id="18" name="object-arm_upper_l">
 				<key id="0" spin="0">
 					<object folder="0" file="13" x="-21.50" y="10.50"/>
 				</key>
 			</timeline>
-			<timeline id="19">
+			<timeline id="19" name="object-leg_lower_l">
 				<key id="0" spin="0">
 					<object folder="0" file="12" x="-15.50" y="8.50"/>
 				</key>
 			</timeline>
-			<timeline id="20">
+			<timeline id="20" name="object-foot_l">
 				<key id="0" spin="0">
 					<object folder="0" file="11" x="-20.50" y="1.50"/>
 				</key>
 			</timeline>
-			<timeline id="21">
+			<timeline id="21" name="object-leg_upper_l">
 				<key id="0" spin="0">
 					<object folder="0" file="10" x="-21.50" y="13.50"/>
 				</key>
 			</timeline>
-			<timeline id="22">
+			<timeline id="22" name="object-torso">
 				<key id="0" spin="0">
 					<object folder="0" file="9" x="-50.50" y="137.50"/>
 				</key>
 			</timeline>
-			<timeline id="23">
+			<timeline id="23" name="object-pelvis">
 				<key id="0" spin="0">
 					<object folder="0" file="8" x="-38.50" y="31.50"/>
 				</key>
 			</timeline>
-			<timeline id="24">
+			<timeline id="24" name="object-head">
 				<key id="0" spin="0">
 					<object folder="0" file="7" x="-26.50" y="77.50"/>
 				</key>
 			</timeline>
-			<timeline id="25">
+			<timeline id="25" name="object-leg_lower_r">
 				<key id="0" spin="0">
 					<object folder="0" file="6" x="-16.50" y="10.50"/>
 				</key>
 			</timeline>
-			<timeline id="26">
+			<timeline id="26" name="object-foot_r">
 				<key id="0" spin="0">
 					<object folder="0" file="5" x="-20.50" y="1.50"/>
 				</key>
 			</timeline>
-			<timeline id="27">
+			<timeline id="27" name="object-leg_upper_r">
 				<key id="0" spin="0">
 					<object folder="0" file="4" x="-23.50" y="13.50"/>
 				</key>
 			</timeline>
-			<timeline id="28">
+			<timeline id="28" name="object-arm_lower_r">
 				<key id="0" spin="0">
 					<object folder="0" file="3" x="-15.50" y="14.50"/>
 				</key>
 			</timeline>
-			<timeline id="29">
+			<timeline id="29" name="object-item">
 				<key id="0" spin="0">
 					<object folder="0" file="2" x="-32.50" y="-28.50"/>
 				</key>
 			</timeline>
-			<timeline id="30">
+			<timeline id="30" name="object-hand_r">
 				<key id="0" spin="0">
 					<object folder="0" file="1" x="-22.50" y="1.50"/>
 				</key>
 			</timeline>
-			<timeline id="31">
+			<timeline id="31" name="object-arm_upper_r">
 				<key id="0" spin="0">
 					<object folder="0" file="0" x="-21.50" y="8.50"/>
 				</key>

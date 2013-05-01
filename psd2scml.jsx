@@ -2,6 +2,12 @@
 
 #include "JSON-js/json.js"
 
+function round(number, digits)
+{
+	var multiple = Math.pow(10, digits);
+	return Math.round(number * multiple) / multiple;
+};
+
 function main()
 {
 	if (!documents.length) return;
@@ -262,7 +268,8 @@ function main()
 			scml.writeln("\t</folder>");
 		}
 		// entity
-		scml.writeln("\t<entity id=\"0\" name=\"\">");
+		var entity_name = doc.name.replace(".psd", "");
+		scml.writeln("\t<entity id=\"0\" name=\"" + entity_name + "\">");
 		// entity/animation
 		scml.writeln("\t\t<animation id=\"0\" name=\"default\" length=\"1000\" looping=\"false\">");
 		// entity/animation/mainline
@@ -309,7 +316,7 @@ function main()
 		{
 			var writeBone = function (bone)
 			{
-				scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + bone.name + "\">");
+				scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + bone.name + "\" object_type=\"bone\">");
 				scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
 				scml.writeln("\t\t\t\t\t<bone x=\"" + bone.local_x.toFixed(2) + "\" y=\"" + bone.local_y.toFixed(2) + "\" angle=\"0\" scale_x=\"1\" scale_y=\"1\"/>");
 				scml.writeln("\t\t\t\t</key>");
@@ -325,7 +332,8 @@ function main()
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
 		{
 			var object = objects[object_i];
-			scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\">");
+			var object_name = "object-" + folders[object.folder].files[object.file].base_name;
+			scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + object_name + "\">");
 			scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
 			scml.writeln("\t\t\t\t\t<object folder=\"" + object.folder + "\" file=\"" + object.file + "\" x=\"" + object.local_x.toFixed(2) + "\" y=\"" + object.local_y.toFixed(2) + "\"/>");
 			scml.writeln("\t\t\t\t</key>");
@@ -394,8 +402,8 @@ function main()
 			var json_file = json_attachment[file.base_name] = {};
 			var x = object.local_x + (file.width / 2);
 			var y = object.local_y - (file.height / 2);
-			json_file.x = x;
-			json_file.y = y;
+			json_file.x = round(x, 2);
+			json_file.y = round(y, 2);
 			json_file.name = file.path_name + file.base_name;
 			json_file.width = 0 | file.width;
 			json_file.height = 0 | file.height;

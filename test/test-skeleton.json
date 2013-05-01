@@ -87,7 +87,7 @@
 			"name": "leg_lower_r",
 			"parent": "leg_upper_r",
 			"x": -2,
-			"y": -88.0000000000001
+			"y": -88
 		},
 		{
 			"name": "foot_r",
@@ -191,7 +191,7 @@
 			},
 			"hand_l": {
 				"hand_l": {
-					"x": 1.4210854715202e-14,
+					"x": 0,
 					"y": -18,
 					"name": "objects/hand_l",
 					"width": 43,
@@ -209,17 +209,17 @@
 			},
 			"leg_lower_l": {
 				"leg_lower_l": {
-					"x": 1.00000000000001,
+					"x": 1,
 					"y": -33,
 					"name": "objects/leg_lower_l",
-					"width": 32,
+					"width": 33,
 					"height": 83
 				}
 			},
 			"foot_l": {
 				"foot_l": {
 					"x": 6,
-					"y": -12.5000000000001,
+					"y": -12.5,
 					"name": "objects/foot_l",
 					"width": 53,
 					"height": 28
@@ -236,7 +236,7 @@
 			},
 			"torso": {
 				"torso": {
-					"x": 1.00000000000001,
+					"x": 1,
 					"y": 61,
 					"name": "objects/torso",
 					"width": 103,
@@ -272,16 +272,16 @@
 			},
 			"foot_r": {
 				"foot_r": {
-					"x": 6.00000000000001,
+					"x": 6,
 					"y": -12.5,
 					"name": "objects/foot_r",
-					"width": 52,
-					"height": 27
+					"width": 53,
+					"height": 28
 				}
 			},
 			"leg_upper_r": {
 				"leg_upper_r": {
-					"x": -1.99999999999999,
+					"x": -2,
 					"y": -37.5,
 					"name": "objects/leg_upper_r",
 					"width": 43,
@@ -293,16 +293,16 @@
 					"x": 1,
 					"y": -32,
 					"name": "objects/arm_lower_r",
-					"width": 32,
-					"height": 92
+					"width": 33,
+					"height": 93
 				}
 			},
 			"item": {
 				"item": {
-					"x": -1.50000000000001,
+					"x": -1.5,
 					"y": -49.5,
 					"name": "objects/item",
-					"width": 61,
+					"width": 62,
 					"height": 42
 				}
 			},
@@ -317,7 +317,7 @@
 			},
 			"arm_upper_r": {
 				"arm_upper_r": {
-					"x": 0.50000000000001,
+					"x": 0.5,
 					"y": -33,
 					"name": "objects/arm_upper_r",
 					"width": 44,
