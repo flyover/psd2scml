@@ -8,6 +8,11 @@ function round(number, digits)
 	return Math.round(number * multiple) / multiple;
 };
 
+function r2d(r)
+{
+	return r * 180 / Math.PI;
+}
+
 function main()
 {
 	if (!documents.length) return;
@@ -148,6 +153,10 @@ function main()
 					bone.local_y = bone.y;
 				}
 
+				bone.local_angle = 0;
+				bone.scale_x = 1;
+				bone.scale_y = 1;
+
 				bone.bones = [];
 
 				for (var group_i = 0, group_ct = group.layerSets.length; group_i < group_ct; ++group_i)
@@ -241,8 +250,75 @@ function main()
 					object.local_y = object.y;
 				}
 
+				object.local_angle = 0;
+
 				objects.push(object);
 			}
+		}
+	}
+	/* scope */ )();
+
+	/* scope */ ;(function () // calculate bone angles
+	{
+		if (root_bone)
+		{
+			var fixBone = function (bone)
+			{
+				var bone_local_angle = 0;
+
+				if (bone.bones.length == 1)
+				{
+					// if a bone has one child, point at child
+					var child_bone = bone.bones[0];
+					var dx = child_bone.x - bone.x;
+					var dy = child_bone.y - bone.y;
+					bone_local_angle = Math.atan2(dy, dx);
+				}
+				else if (bone.parent)
+				{
+					// else, if bone has parent, point away from parent
+					var dx = bone.x - bone.parent.x;
+					var dy = bone.y - bone.parent.y;
+					bone_local_angle = Math.atan2(dy, dx);
+				}
+
+				// adjust bone angle
+				bone.local_angle += bone_local_angle;
+
+				// rotate all the child bones back to world position
+				for (var child_bone_i = 0, child_bone_ct = bone.bones.length; child_bone_i < child_bone_ct; ++child_bone_i)
+				{
+					var child_bone = bone.bones[child_bone_i];
+
+					child_bone.local_angle -= bone_local_angle;
+
+					var tx = child_bone.local_x;
+					var ty = child_bone.local_y;
+					child_bone.local_x = tx * Math.cos(-bone_local_angle) - ty * Math.sin(-bone_local_angle);
+					child_bone.local_y = tx * Math.sin(-bone_local_angle) + ty * Math.cos(-bone_local_angle);
+				}
+
+				// rotate all the child objects back to world position
+				for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
+				{
+					var object = objects[object_i];
+
+					if (object.parent == bone)
+					{
+						object.local_angle -= bone_local_angle;
+					}
+				}
+
+				// process all child bones
+				for (var bone_i = 0, bone_ct = bone.bones.length; bone_i < bone_ct; ++bone_i)
+				{
+					var child_bone = bone.bones[bone_i];
+
+					fixBone(child_bone);
+				}
+			}
+
+			fixBone(root_bone);
 		}
 	}
 	/* scope */ )();
@@ -318,7 +394,7 @@ function main()
 			{
 				scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + bone.name + "\" object_type=\"bone\">");
 				scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
-				scml.writeln("\t\t\t\t\t<bone x=\"" + bone.local_x.toFixed(2) + "\" y=\"" + bone.local_y.toFixed(2) + "\" angle=\"0\" scale_x=\"1\" scale_y=\"1\"/>");
+				scml.writeln("\t\t\t\t\t<bone x=\"" + bone.local_x.toFixed(2) + "\" y=\"" + bone.local_y.toFixed(2) + "\" angle=\"" + r2d(bone.local_angle).toFixed(2) + "\" scale_x=\"" + bone.scale_x.toFixed(2) + "\" scale_y=\"" + bone.scale_y.toFixed(2) + "\"/>");
 				scml.writeln("\t\t\t\t</key>");
 				scml.writeln("\t\t\t</timeline>");
 				++timeline_id;
@@ -332,10 +408,13 @@ function main()
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
 		{
 			var object = objects[object_i];
-			var object_name = "object-" + folders[object.folder].files[object.file].base_name;
+			var file = folders[object.folder].files[object.file];
+			var object_name = "object-" + file.base_name;
+			var pivot_x = (0 - (object.local_x / file.width ));
+			var pivot_y = (1 - (object.local_y / file.height));
 			scml.writeln("\t\t\t<timeline id=\"" + timeline_id + "\" name=\"" + object_name + "\">");
 			scml.writeln("\t\t\t\t<key id=\"0\" spin=\"0\">");
-			scml.writeln("\t\t\t\t\t<object folder=\"" + object.folder + "\" file=\"" + object.file + "\" x=\"" + object.local_x.toFixed(2) + "\" y=\"" + object.local_y.toFixed(2) + "\"/>");
+			scml.writeln("\t\t\t\t\t<object folder=\"" + object.folder + "\" file=\"" + object.file + "\" x=\"0\" y=\"0\" pivot_x=\"" + pivot_x.toFixed(2) + "\" pivot_y=\"" + pivot_y.toFixed(2) + "\" angle=\"" + r2d(object.local_angle).toFixed(2) + "\"/>");
 			scml.writeln("\t\t\t\t</key>");
 			scml.writeln("\t\t\t</timeline>");
 			++timeline_id;
@@ -366,6 +445,7 @@ function main()
 				}
 				json_bone.x = bone.local_x;
 				json_bone.y = bone.local_y;
+				json_bone.rotation = r2d(bone.local_angle);
 
 				for (var i = 0, ct = bone.bones.length; i < ct; ++i)
 				{
@@ -400,10 +480,22 @@ function main()
 			var file = folder.files[object.file];
 			var json_attachment = skin[file.base_name] = {};
 			var json_file = json_attachment[file.base_name] = {};
-			var x = object.local_x + (file.width / 2);
-			var y = object.local_y - (file.height / 2);
+
+			var pivot_x = (0 - (object.local_x / file.width ));
+			var pivot_y = (1 - (object.local_y / file.height));
+
+			// spine object anchor at center of image
+			var x = (pivot_x - 0.5) * file.width;
+			var y = (pivot_y - 0.5) * file.height;
+
+			var tx = x;
+			var ty = y;
+			x = tx * Math.cos(-object.local_angle) - ty * Math.sin(-object.local_angle);
+			y = tx * Math.sin(-object.local_angle) + ty * Math.cos(-object.local_angle);
+
 			json_file.x = round(x, 2);
 			json_file.y = round(y, 2);
+			json_file.rotation = r2d(object.local_angle);
 			json_file.name = file.path_name + file.base_name;
 			json_file.width = 0 | file.width;
 			json_file.height = 0 | file.height;
