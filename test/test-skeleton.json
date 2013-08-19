@@ -3,113 +3,97 @@
 		{
 			"name": "root",
 			"x": 122.5,
-			"y": -479.5,
-			"rotation": 90
+			"y": -479.5
 		},
 		{
 			"name": "pelvis",
 			"parent": "root",
-			"x": 211,
-			"y": 1.29200237310046e-14,
-			"rotation": 0
+			"x": 0,
+			"y": 211
 		},
 		{
 			"name": "torso",
 			"parent": "pelvis",
-			"x": 30,
-			"y": 1.83697019872103e-15,
-			"rotation": 0
+			"x": 0,
+			"y": 30
 		},
 		{
 			"name": "head",
 			"parent": "torso",
-			"x": 129,
-			"y": -0.99999999999999,
-			"rotation": -0.44414443311193
+			"x": 1,
+			"y": 129
 		},
 		{
 			"name": "arm_upper_l",
 			"parent": "torso",
-			"x": 133,
-			"y": -56,
-			"rotation": -180.818455461689
+			"x": 56,
+			"y": 133
 		},
 		{
 			"name": "arm_lower_l",
 			"parent": "arm_upper_l",
-			"x": 70.0071424927485,
-			"y": -3.10862446895044e-15,
-			"rotation": 0.81845546168862
+			"x": -1,
+			"y": -70
 		},
 		{
 			"name": "hand_l",
 			"parent": "arm_lower_l",
-			"x": 65,
-			"y": -3.9801020972289e-15,
-			"rotation": 0
+			"x": 0,
+			"y": -65
 		},
 		{
 			"name": "arm_upper_r",
 			"parent": "torso",
-			"x": 121,
-			"y": 57,
-			"rotation": -180.795723552739
+			"x": -57,
+			"y": 121
 		},
 		{
 			"name": "arm_lower_r",
 			"parent": "arm_upper_r",
-			"x": 72.0069441095788,
-			"y": 7.105427357601e-15,
-			"rotation": 0.79572355273928
+			"x": -1,
+			"y": -72
 		},
 		{
 			"name": "hand_r",
 			"parent": "arm_lower_r",
-			"x": 69,
-			"y": -4.22503145705837e-15,
-			"rotation": 0
+			"x": 0,
+			"y": -69
 		},
 		{
 			"name": "leg_upper_l",
 			"parent": "pelvis",
-			"x": -10,
-			"y": -27,
-			"rotation": -181.347887280199
+			"x": 27,
+			"y": -10
 		},
 		{
 			"name": "leg_lower_l",
 			"parent": "leg_upper_l",
-			"x": 85.0235261559999,
-			"y": 6.88338275267597e-15,
-			"rotation": 2.24306099040968
+			"x": -2,
+			"y": -85
 		},
 		{
 			"name": "foot_l",
 			"parent": "leg_lower_l",
-			"x": 64.007812023221,
-			"y": -8.88178419700125e-16,
-			"rotation": 0
+			"x": 1,
+			"y": -64
 		},
 		{
 			"name": "leg_upper_r",
 			"parent": "pelvis",
-			"x": -13,
-			"y": 26,
-			"rotation": -181.301952672579
+			"x": -26,
+			"y": -13
 		},
 		{
 			"name": "leg_lower_r",
 			"parent": "leg_upper_r",
-			"x": 88.0227243386615,
-			"y": -5.77315972805081e-15,
-			"rotation": 1.30195267257888
+			"x": -2,
+			"y": -88
 		},
 		{
 			"name": "foot_r",
 			"parent": "leg_lower_r",
-			"x": 63,
-			"y": -3.85763741731416e-15,
-			"rotation": 0
+			"x": 0,
+			"y": -63
 		}
 	],
 	"slots": [
@@ -198,9 +182,8 @@
 		"test": {
 			"arm_lower_l": {
 				"arm_lower_l": {
-					"x": 32,
-					"y": 0,
-					"rotation": 90,
+					"x": 0,
+					"y": -32,
 					"name": "objects/arm_lower_l",
 					"width": 33,
 					"height": 93
@@ -208,9 +191,8 @@
 			},
 			"hand_l": {
 				"hand_l": {
-					"x": 18,
-					"y": 0,
-					"rotation": 90,
+					"x": 0,
+					"y": -18,
 					"name": "objects/hand_l",
 					"width": 43,
 					"height": 43
@@ -218,9 +200,8 @@
 			},
 			"arm_upper_l": {
 				"arm_upper_l": {
-					"x": 31,
-					"y": -0.44,
-					"rotation": 90.8184554616886,
+					"x": 0,
+					"y": -31,
 					"name": "objects/arm_upper_l",
 					"width": 43,
 					"height": 83
@@ -228,9 +209,8 @@
 			},
 			"leg_lower_l": {
 				"leg_lower_l": {
-					"x": 32.98,
-					"y": 1.52,
-					"rotation": 89.1048262897889,
+					"x": 1,
+					"y": -33,
 					"name": "objects/leg_lower_l",
 					"width": 33,
 					"height": 83
@@ -238,9 +218,8 @@
 			},
 			"foot_l": {
 				"foot_l": {
-					"x": 12.4,
-					"y": 6.19,
-					"rotation": 89.1048262897889,
+					"x": 6,
+					"y": -12.5,
 					"name": "objects/foot_l",
 					"width": 53,
 					"height": 28
@@ -248,9 +227,8 @@
 			},
 			"leg_upper_l": {
 				"leg_upper_l": {
-					"x": 37.99,
-					"y": -0.89,
-					"rotation": 91.3478872801986,
+					"x": 0,
+					"y": -38,
 					"name": "objects/leg_upper_l",
 					"width": 43,
 					"height": 103
@@ -258,9 +236,8 @@
 			},
 			"torso": {
 				"torso": {
-					"x": 61,
-					"y": -1,
-					"rotation": -90,
+					"x": 1,
+					"y": 61,
 					"name": "objects/torso",
 					"width": 103,
 					"height": 153
@@ -268,9 +245,8 @@
 			},
 			"pelvis": {
 				"pelvis": {
-					"x": 5,
-					"y": 2,
-					"rotation": -90,
+					"x": -2,
+					"y": 5,
 					"name": "objects/pelvis",
 					"width": 73,
 					"height": 53
@@ -278,9 +254,8 @@
 			},
 			"head": {
 				"head": {
-					"x": 36,
-					"y": -0.28,
-					"rotation": -89.5558555668881,
+					"x": 0,
+					"y": 36,
 					"name": "objects/head",
 					"width": 53,
 					"height": 83
@@ -288,9 +263,8 @@
 			},
 			"leg_lower_r": {
 				"leg_lower_r": {
-					"x": 31,
-					"y": 0,
-					"rotation": 90,
+					"x": 0,
+					"y": -31,
 					"name": "objects/leg_lower_r",
 					"width": 33,
 					"height": 83
@@ -298,9 +272,8 @@
 			},
 			"foot_r": {
 				"foot_r": {
-					"x": 12.5,
-					"y": 6,
-					"rotation": 90,
+					"x": 6,
+					"y": -12.5,
 					"name": "objects/foot_r",
 					"width": 53,
 					"height": 28
@@ -308,9 +281,8 @@
 			},
 			"leg_upper_r": {
 				"leg_upper_r": {
-					"x": 37.44,
-					"y": -2.85,
-					"rotation": 91.3019526725789,
+					"x": -2,
+					"y": -37.5,
 					"name": "objects/leg_upper_r",
 					"width": 43,
 					"height": 102
@@ -318,9 +290,8 @@
 			},
 			"arm_lower_r": {
 				"arm_lower_r": {
-					"x": 32,
-					"y": 1,
-					"rotation": 90,
+					"x": 1,
+					"y": -32,
 					"name": "objects/arm_lower_r",
 					"width": 33,
 					"height": 93
@@ -328,9 +299,8 @@
 			},
 			"item": {
 				"item": {
-					"x": 49.5,
-					"y": -1.5,
-					"rotation": 90,
+					"x": -1.5,
+					"y": -49.5,
 					"name": "objects/item",
 					"width": 62,
 					"height": 42
@@ -338,9 +308,8 @@
 			},
 			"hand_r": {
 				"hand_r": {
-					"x": 20.5,
-					"y": -1,
-					"rotation": 90,
+					"x": -1,
+					"y": -20.5,
 					"name": "objects/hand_r",
 					"width": 43,
 					"height": 44
@@ -348,9 +317,8 @@
 			},
 			"arm_upper_r": {
 				"arm_upper_r": {
-					"x": 33,
-					"y": 0.04,
-					"rotation": 90.7957235527393,
+					"x": 0.5,
+					"y": -33,
 					"name": "objects/arm_upper_r",
 					"width": 44,
 					"height": 83

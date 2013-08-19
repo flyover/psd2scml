@@ -58,162 +58,162 @@
 			</mainline>
 			<timeline id="0" name="root" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="122.50" y="-479.50" angle="90.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="122.50" y="-479.50" angle="90.00" scale_x="1.05" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="1" name="pelvis" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="211.00" y="0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="0.00" angle="0.00" scale_x="0.14" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="2" name="torso" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="30.00" y="0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="0.00" angle="-0.44" scale_x="4.30" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="3" name="head" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="129.00" y="-1.00" angle="-0.44" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="4" name="arm_upper_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="133.00" y="-56.00" angle="-180.82" scale_x="1.00" scale_y="1.00"/>
+					<bone x="206.86" y="-54.97" angle="-180.37" scale_x="0.54" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="5" name="arm_lower_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="70.01" y="-0.00" angle="0.82" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="0.82" scale_x="0.93" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="6" name="hand_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="65.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="7" name="arm_upper_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="121.00" y="57.00" angle="-180.80" scale_x="1.00" scale_y="1.00"/>
+					<bone x="186.90" y="57.94" angle="-180.35" scale_x="0.56" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="8" name="arm_lower_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="72.01" y="0.00" angle="0.80" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="0.00" angle="0.80" scale_x="0.96" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="9" name="hand_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="69.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="10" name="leg_upper_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="-10.00" y="-27.00" angle="-181.35" scale_x="1.00" scale_y="1.00"/>
+					<bone x="-66.67" y="-27.00" angle="-181.35" scale_x="2.83" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="11" name="leg_lower_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="85.02" y="0.00" angle="2.24" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="0.00" angle="2.24" scale_x="0.75" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="12" name="foot_l" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="64.01" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="13" name="leg_upper_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="-13.00" y="26.00" angle="-181.30" scale_x="1.00" scale_y="1.00"/>
+					<bone x="-86.67" y="26.00" angle="-181.30" scale_x="2.93" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="14" name="leg_lower_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="88.02" y="-0.00" angle="1.30" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="1.30" scale_x="0.72" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="15" name="foot_r" object_type="bone">
 				<key id="0" spin="0">
-					<bone x="63.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
+					<bone x="200.00" y="-0.00" angle="0.00" scale_x="1.00" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="16" name="object-arm_lower_l">
 				<key id="0" spin="0">
-					<object folder="0" file="15" x="0" y="0" pivot_x="0.50" pivot_y="0.84" angle="90.00"/>
+					<object folder="0" file="15" x="0" y="0" pivot_x="0.50" pivot_y="0.84" angle="90.00" scale_x="3.08" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="17" name="object-hand_l">
 				<key id="0" spin="0">
-					<object folder="0" file="14" x="0" y="0" pivot_x="0.50" pivot_y="0.92" angle="90.00"/>
+					<object folder="0" file="14" x="0" y="0" pivot_x="0.50" pivot_y="0.92" angle="90.00" scale_x="3.08" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="18" name="object-arm_upper_l">
 				<key id="0" spin="0">
-					<object folder="0" file="13" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="90.82"/>
+					<object folder="0" file="13" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="90.82" scale_x="2.86" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="19" name="object-leg_lower_l">
 				<key id="0" spin="0">
-					<object folder="0" file="12" x="0" y="0" pivot_x="0.47" pivot_y="0.90" angle="89.10"/>
+					<object folder="0" file="12" x="0" y="0" pivot_x="0.47" pivot_y="0.90" angle="89.10" scale_x="3.12" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="20" name="object-foot_l">
 				<key id="0" spin="0">
-					<object folder="0" file="11" x="0" y="0" pivot_x="0.39" pivot_y="0.95" angle="89.10"/>
+					<object folder="0" file="11" x="0" y="0" pivot_x="0.39" pivot_y="0.95" angle="89.10" scale_x="3.12" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="21" name="object-leg_upper_l">
 				<key id="0" spin="0">
-					<object folder="0" file="10" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="91.35"/>
+					<object folder="0" file="10" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="91.35" scale_x="2.35" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="22" name="object-torso">
 				<key id="0" spin="0">
-					<object folder="0" file="9" x="0" y="0" pivot_x="0.49" pivot_y="0.10" angle="-90.00"/>
+					<object folder="0" file="9" x="0" y="0" pivot_x="0.49" pivot_y="0.10" angle="-89.56" scale_x="1.55" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="23" name="object-pelvis">
 				<key id="0" spin="0">
-					<object folder="0" file="8" x="0" y="0" pivot_x="0.53" pivot_y="0.41" angle="-90.00"/>
+					<object folder="0" file="8" x="0" y="0" pivot_x="0.53" pivot_y="0.41" angle="-90.00" scale_x="6.67" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="24" name="object-head">
 				<key id="0" spin="0">
-					<object folder="0" file="7" x="0" y="0" pivot_x="0.50" pivot_y="0.07" angle="-89.56"/>
+					<object folder="0" file="7" x="0" y="0" pivot_x="0.50" pivot_y="0.07" angle="-89.56" scale_x="1.55" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="25" name="object-leg_lower_r">
 				<key id="0" spin="0">
-					<object folder="0" file="6" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="90.00"/>
+					<object folder="0" file="6" x="0" y="0" pivot_x="0.50" pivot_y="0.87" angle="90.00" scale_x="3.17" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="26" name="object-foot_r">
 				<key id="0" spin="0">
-					<object folder="0" file="5" x="0" y="0" pivot_x="0.39" pivot_y="0.95" angle="90.00"/>
+					<object folder="0" file="5" x="0" y="0" pivot_x="0.39" pivot_y="0.95" angle="90.00" scale_x="3.17" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="27" name="object-leg_upper_r">
 				<key id="0" spin="0">
-					<object folder="0" file="4" x="0" y="0" pivot_x="0.55" pivot_y="0.87" angle="91.30"/>
+					<object folder="0" file="4" x="0" y="0" pivot_x="0.55" pivot_y="0.87" angle="91.30" scale_x="2.27" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="28" name="object-arm_lower_r">
 				<key id="0" spin="0">
-					<object folder="0" file="3" x="0" y="0" pivot_x="0.47" pivot_y="0.84" angle="90.00"/>
+					<object folder="0" file="3" x="0" y="0" pivot_x="0.47" pivot_y="0.84" angle="90.00" scale_x="2.90" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="29" name="object-item">
 				<key id="0" spin="0">
-					<object folder="0" file="2" x="0" y="0" pivot_x="0.52" pivot_y="1.68" angle="90.00"/>
+					<object folder="0" file="2" x="0" y="0" pivot_x="0.52" pivot_y="1.68" angle="90.00" scale_x="2.90" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="30" name="object-hand_r">
 				<key id="0" spin="0">
-					<object folder="0" file="1" x="0" y="0" pivot_x="0.52" pivot_y="0.97" angle="90.00"/>
+					<object folder="0" file="1" x="0" y="0" pivot_x="0.52" pivot_y="0.97" angle="90.00" scale_x="2.90" scale_y="1.00"/>
 				</key>
 			</timeline>
 			<timeline id="31" name="object-arm_upper_r">
 				<key id="0" spin="0">
-					<object folder="0" file="0" x="0" y="0" pivot_x="0.49" pivot_y="0.90" angle="90.80"/>
+					<object folder="0" file="0" x="0" y="0" pivot_x="0.49" pivot_y="0.90" angle="90.80" scale_x="2.78" scale_y="1.00"/>
 				</key>
 			</timeline>
 		</animation>
