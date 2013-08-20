@@ -542,8 +542,6 @@ function main()
 	}
 	/* scope */ )();
 
-	return 0;
-
 	/* scope */ ;(function () // generate PNG's
 	{
 		var clone_doc = doc.duplicate();
