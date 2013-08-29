@@ -38,15 +38,17 @@ function main()
 			for (var group_i = 0, group_ct = parent_group.layerSets.length; group_i < group_ct; ++group_i)
 			{
 				var group = parent_group.layerSets[group_i];
+				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
 				if (group.visible)
 				{
-					parseFolder(group, path_name + group.name);
+					parseFolder(group, path_name + group_base_name);
 				}
 			}
 
 			var folder = {};
 			folder.id = folder_id;
 			folder.name = folder_name;
+			folder.group_name = parent_group.name;
 			folder.files = [];
 
 			var file_id = 0;
@@ -60,13 +62,13 @@ function main()
 					var xmax = layer.bounds[2].as("px");
 					var ymax = layer.bounds[3].as("px");
 
-					var base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
+					var layer_base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
 
 					var file = {};
 					file.id = file_id++;
-					file.name = path_name + base_name + ".png";
+					file.name = path_name + layer_base_name + ".png";
 					file.path_name = path_name;
-					file.base_name = base_name;
+					file.base_name = layer_base_name;
 					file.width = xmax - xmin;
 					file.height = ymax - ymin;
 
@@ -114,9 +116,11 @@ function main()
 
 			var parseBone = function (bone, parent, group)
 			{
+				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
+
 				bone.id = bone_id++;
 				bone.parent = parent;
-				bone.name = group.name;
+				bone.name = group_base_name;
 
 				// look for an art layer named "bone"
 				//var bone_layer = group.artLayers.getByName("bone");
@@ -199,6 +203,11 @@ function main()
 			return null;
 		}
 
+		var findBoneByName = function (start_bone, bone_name)
+		{
+			return findBone(start_bone, function (bone) { return (bone.name == bone_name); })
+		}
+
 		// create objects for each file in each folder
 		var object_id = 0;
 		for (var folder_i = 0, folder_ct = folders.length; folder_i < folder_ct; ++folder_i)
@@ -216,27 +225,47 @@ function main()
 				object.y = -file.layer_y;
 
 				// find a bone with the same name
-				var bone = findBone(root_bone, function (bone)
+				var bone = null;
+
+				// layer.name format: "base_name bone(bone_name)"
+				var match = file.layer_name.match(/\w+/g);
+				for (var match_i = 1, match_ct = match.length; match_i < match_ct; match_i += 2)
 				{
-					// layer.name format
-					// "base_name"
-					// "base_name bone(bone_name)"
-					var match = file.layer_name.match(/\w+/g);
+					if (match[match_i] == "bone")
+					{
+						var bone_name = match[match_i+1];
+						bone = findBoneByName(root_bone, bone_name);
+					}
+				}
+
+				if (!bone)
+				{
+					// layer.name format: "base_name"
 					var bone_name = match[0];
+					bone = findBoneByName(root_bone, bone_name);
+				}
+
+				if (!bone)
+				{
+					// group.name format: "base_name bone(bone_name)"
+					var match = folder.group_name.match(/\w+/g);
 					for (var match_i = 1, match_ct = match.length; match_i < match_ct; match_i += 2)
 					{
 						if (match[match_i] == "bone")
 						{
-							bone_name = match[match_i+1];
+							var bone_name = match[match_i+1];
+							bone = findBoneByName(root_bone, bone_name);
 						}
 					}
-					if (bone.name == bone_name)
-					{
-						return true;
-					}
 
-					return false;
-				});
+					if (!bone)
+					{
+						// group.name format: "base_name"
+						var bone_name = match[0];
+						bone = findBoneByName(root_bone, bone_name);
+					}
+				}
+
 				if (bone)
 				{
 					object.parent = bone;
@@ -567,14 +596,15 @@ function main()
 			for (var group_i = 0, group_ct = parent_group.layerSets.length; group_i < group_ct; ++group_i)
 			{
 				var group = parent_group.layerSets[group_i];
-				parseFolder(group, path_name + group.name);
+				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
+				parseFolder(group, path_name + group_base_name);
 			}
 
 			for (var layer_i = 0, layer_ct = parent_group.artLayers.length; layer_i < layer_ct; ++layer_i)
 			{
 				var layer = parent_group.artLayers[layer_i];
-				var base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
-				var png_name = out_path + "/" + path_name + base_name + ".png";
+				var layer_base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
+				var png_name = out_path + "/" + path_name + layer_base_name + ".png";
 				var png = new File(png_name);
 				if (!png.exists || true)
 				{
