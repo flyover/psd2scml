@@ -291,20 +291,20 @@ function main()
 
 	/* scope */ ;(function () // calculate bone angles
 	{
+		// copy object transforms
+		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
+		{
+			var object = objects[object_i];
+
+			object.fix_local_x = object.local_x;
+			object.fix_local_y = object.local_y;
+			object.fix_local_angle = object.local_angle;
+			object.fix_local_scale_x = object.local_scale_x;
+			object.fix_local_scale_y = object.local_scale_y;
+		}
+
 		if (root_bone)
 		{
-			// copy object transforms
-			for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
-			{
-				var object = objects[object_i];
-
-				object.fix_local_x = object.local_x;
-				object.fix_local_y = object.local_y;
-				object.fix_local_angle = object.local_angle;
-				object.fix_local_scale_x = object.local_scale_x;
-				object.fix_local_scale_y = object.local_scale_y;
-			}
-
 			// copy bone transforms
 			var copyBone = function (bone)
 			{
@@ -528,6 +528,10 @@ function main()
 			}
 			writeBone(root_bone);
 		}
+		else
+		{
+			json.bones.push({ name: "root" }); // need at least one root bone
+		}
 		//json.slots = {}; // version < 1.0.9
 		json.slots = [];
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
@@ -538,11 +542,13 @@ function main()
 			//var json_slot = json.slots[file.base_name] = {}; // version < 1.0.9
 			var json_slot = {};
 			json.slots.push(json_slot);
-			json_slot.name = file.base_name;
-			if (object.parent)
+			var bone_name = "root"; // need at least one root bone
+			if (root_bone && object.parent)
 			{
-				json_slot.bone = object.parent.name;
+				bone_name = object.parent.name;
 			}
+			json_slot.name = bone_name;
+			json_slot.bone = bone_name;
 			json_slot.attachment = file.base_name;
 		}
 		json.skins = {};
@@ -552,7 +558,12 @@ function main()
 			var object = objects[object_i];
 			var folder = folders[object.folder];
 			var file = folder.files[object.file];
-			var json_attachment = skin[file.base_name] = {};
+			var slot_name = "root"; // need at least one root bone
+			if (root_bone && object.parent)
+			{
+				slot_name = object.parent.name;
+			}
+			var json_attachment = skin[slot_name] || (skin[slot_name] = {});
 			var json_file = json_attachment[file.base_name] = {};
 			var x = object.local_x + (file.width / 2);
 			var y = object.local_y - (file.height / 2);
@@ -563,7 +574,7 @@ function main()
 			json_file.height = 0 | file.height;
 		}
 
-		var json_file = new File(out_path + "/" + doc.name.replace(".psd", "-skeleton.json"));
+		var json_file = new File(out_path + "/" + doc.name.replace(".psd", ".json"));
 		json_file.encoding = "UTF-8";
 		json_file.open("w");
 		json_file.write(JSON.stringify(json, null, '\t'));
