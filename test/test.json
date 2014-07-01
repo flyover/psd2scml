@@ -87,7 +87,7 @@
 			"name": "leg_lower_r",
 			"parent": "leg_upper_r",
 			"x": -2,
-			"y": -88
+			"y": -88.0000000000001
 		},
 		{
 			"name": "foot_r",
@@ -163,7 +163,7 @@
 			"attachment": "arm_lower_r"
 		},
 		{
-			"name": "item",
+			"name": "hand_r",
 			"bone": "hand_r",
 			"attachment": "item"
 		},
@@ -212,7 +212,7 @@
 					"x": 1,
 					"y": -33,
 					"name": "objects/leg_lower_l",
-					"width": 33,
+					"width": 32,
 					"height": 83
 				}
 			},
@@ -275,8 +275,8 @@
 					"x": 6,
 					"y": -12.5,
 					"name": "objects/foot_r",
-					"width": 53,
-					"height": 28
+					"width": 52,
+					"height": 27
 				}
 			},
 			"leg_upper_r": {
@@ -293,20 +293,18 @@
 					"x": 1,
 					"y": -32,
 					"name": "objects/arm_lower_r",
-					"width": 33,
-					"height": 93
+					"width": 32,
+					"height": 92
 				}
 			},
-			"item": {
+			"hand_r": {
 				"item": {
 					"x": -1.5,
 					"y": -49.5,
 					"name": "objects/item",
-					"width": 62,
+					"width": 61,
 					"height": 42
-				}
-			},
-			"hand_r": {
+				},
 				"hand_r": {
 					"x": -1,
 					"y": -20.5,
