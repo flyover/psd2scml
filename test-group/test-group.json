@@ -8,194 +8,224 @@
 	],
 	"slots": [
 		{
-			"name": "root",
+			"name": "arm_lower_l",
 			"bone": "root",
 			"attachment": "arm_lower_l"
 		},
 		{
-			"name": "root",
+			"name": "hand_l",
 			"bone": "root",
 			"attachment": "hand_l"
 		},
 		{
-			"name": "root",
+			"name": "arm_upper_l",
 			"bone": "root",
 			"attachment": "arm_upper_l"
 		},
 		{
-			"name": "root",
+			"name": "leg_lower_l",
 			"bone": "root",
 			"attachment": "leg_lower_l"
 		},
 		{
-			"name": "root",
+			"name": "foot_l",
 			"bone": "root",
 			"attachment": "foot_l"
 		},
 		{
-			"name": "root",
+			"name": "leg_upper_l",
 			"bone": "root",
 			"attachment": "leg_upper_l"
 		},
 		{
-			"name": "root",
+			"name": "torso",
 			"bone": "root",
 			"attachment": "torso"
 		},
 		{
-			"name": "root",
+			"name": "pelvis",
 			"bone": "root",
 			"attachment": "pelvis"
 		},
 		{
-			"name": "root",
+			"name": "head",
 			"bone": "root",
 			"attachment": "head"
 		},
 		{
-			"name": "root",
+			"name": "leg_lower_r",
 			"bone": "root",
 			"attachment": "leg_lower_r"
 		},
 		{
-			"name": "root",
+			"name": "foot_r",
 			"bone": "root",
 			"attachment": "foot_r"
 		},
 		{
-			"name": "root",
+			"name": "leg_upper_r",
 			"bone": "root",
 			"attachment": "leg_upper_r"
 		},
 		{
-			"name": "root",
+			"name": "arm_lower_r",
 			"bone": "root",
 			"attachment": "arm_lower_r"
 		},
 		{
-			"name": "root",
+			"name": "item",
 			"bone": "root",
 			"attachment": "item"
 		},
 		{
-			"name": "root",
+			"name": "hand_r",
 			"bone": "root",
 			"attachment": "hand_r"
 		},
 		{
-			"name": "root",
+			"name": "arm_upper_r",
 			"bone": "root",
 			"attachment": "arm_upper_r"
 		}
 	],
 	"skins": {
 		"test-group": {
-			"root": {
+			"arm_lower_l": {
 				"arm_lower_l": {
 					"x": 55,
 					"y": 272,
 					"name": "objects/arm_lower_l",
 					"width": 33,
 					"height": 93
-				},
+				}
+			},
+			"hand_l": {
 				"hand_l": {
 					"x": 55,
 					"y": 221,
 					"name": "objects/hand_l",
 					"width": 43,
 					"height": 43
-				},
+				}
+			},
+			"arm_upper_l": {
 				"arm_upper_l": {
 					"x": 56,
 					"y": 343,
 					"name": "objects/arm_upper_l",
 					"width": 43,
 					"height": 83
-				},
+				}
+			},
+			"leg_lower_l": {
 				"leg_lower_l": {
 					"x": 26,
 					"y": 83,
 					"name": "objects/leg_lower_l",
 					"width": 32,
 					"height": 83
-				},
+				}
+			},
+			"foot_l": {
 				"foot_l": {
 					"x": 32,
 					"y": 39.5,
 					"name": "objects/foot_l",
 					"width": 53,
 					"height": 28
-				},
+				}
+			},
+			"leg_upper_l": {
 				"leg_upper_l": {
 					"x": 27,
 					"y": 163,
 					"name": "objects/leg_upper_l",
 					"width": 43,
 					"height": 103
-				},
+				}
+			},
+			"torso": {
 				"torso": {
 					"x": 1,
 					"y": 302,
 					"name": "objects/torso",
 					"width": 103,
 					"height": 153
-				},
+				}
+			},
+			"pelvis": {
 				"pelvis": {
 					"x": -2,
 					"y": 216,
 					"name": "objects/pelvis",
 					"width": 73,
 					"height": 53
-				},
+				}
+			},
+			"head": {
 				"head": {
 					"x": 1,
 					"y": 406,
 					"name": "objects/head",
 					"width": 53,
 					"height": 83
-				},
+				}
+			},
+			"leg_lower_r": {
 				"leg_lower_r": {
 					"x": -28,
 					"y": 79,
 					"name": "objects/leg_lower_r",
 					"width": 33,
 					"height": 83
-				},
+				}
+			},
+			"foot_r": {
 				"foot_r": {
 					"x": -22,
 					"y": 34.5,
 					"name": "objects/foot_r",
 					"width": 52,
 					"height": 27
-				},
+				}
+			},
+			"leg_upper_r": {
 				"leg_upper_r": {
 					"x": -28,
 					"y": 160.5,
 					"name": "objects/leg_upper_r",
 					"width": 43,
 					"height": 102
-				},
+				}
+			},
+			"arm_lower_r": {
 				"arm_lower_r": {
 					"x": -57,
 					"y": 258,
 					"name": "objects/arm_lower_r",
 					"width": 32,
 					"height": 92
-				},
+				}
+			},
+			"item": {
 				"item": {
 					"x": -59.5,
 					"y": 171.5,
 					"name": "objects/item",
 					"width": 61,
 					"height": 42
-				},
+				}
+			},
+			"hand_r": {
 				"hand_r": {
 					"x": -59,
 					"y": 200.5,
 					"name": "objects/hand_r",
 					"width": 43,
 					"height": 44
-				},
+				}
+			},
+			"arm_upper_r": {
 				"arm_upper_r": {
 					"x": -56.5,
 					"y": 329,

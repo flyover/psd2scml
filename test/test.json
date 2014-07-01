@@ -163,7 +163,7 @@
 			"attachment": "arm_lower_r"
 		},
 		{
-			"name": "hand_r",
+			"name": "item",
 			"bone": "hand_r",
 			"attachment": "item"
 		},
@@ -297,14 +297,16 @@
 					"height": 92
 				}
 			},
-			"hand_r": {
+			"item": {
 				"item": {
 					"x": -1.5,
 					"y": -49.5,
 					"name": "objects/item",
 					"width": 61,
 					"height": 42
-				},
+				}
+			},
+			"hand_r": {
 				"hand_r": {
 					"x": -1,
 					"y": -20.5,

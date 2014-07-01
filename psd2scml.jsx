@@ -547,7 +547,7 @@ function main()
 			{
 				bone_name = object.parent.name;
 			}
-			json_slot.name = bone_name;
+			json_slot.name = file.base_name;//bone_name;
 			json_slot.bone = bone_name;
 			json_slot.attachment = file.base_name;
 		}
@@ -558,11 +558,7 @@ function main()
 			var object = objects[object_i];
 			var folder = folders[object.folder];
 			var file = folder.files[object.file];
-			var slot_name = "root"; // need at least one root bone
-			if (root_bone && object.parent)
-			{
-				slot_name = object.parent.name;
-			}
+			var slot_name = file.base_name;
 			var json_attachment = skin[slot_name] || (skin[slot_name] = {});
 			var json_file = json_attachment[file.base_name] = {};
 			var x = object.local_x + (file.width / 2);
