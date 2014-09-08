@@ -38,7 +38,7 @@ function main()
 			for (var group_i = 0, group_ct = parent_group.layerSets.length; group_i < group_ct; ++group_i)
 			{
 				var group = parent_group.layerSets[group_i];
-				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
+				var group_base_name = group.name.split(" ")[0]; // extract first word from group name
 				if (group.visible)
 				{
 					parseFolder(group, path_name + group_base_name);
@@ -62,7 +62,7 @@ function main()
 					var xmax = layer.bounds[2].as("px");
 					var ymax = layer.bounds[3].as("px");
 
-					var layer_base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
+					var layer_base_name = layer.name.split(" ")[0]; // extract first word from layer name
 
 					var file = {};
 					file.id = file_id++;
@@ -116,7 +116,7 @@ function main()
 
 			var parseBone = function (bone, parent, group)
 			{
-				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
+				var group_base_name = group.name.split(" ")[0]; // extract first word from group name
 
 				bone.id = bone_id++;
 				bone.parent = parent;
@@ -227,54 +227,53 @@ function main()
 				// find a bone with the same name
 				var bone = null;
 
-				// layer.name format: "base_name bone(bone_name)"
-				var match = file.layer_name.match(/\w+/g);
-				for (var match_i = 1, match_ct = match.length; match_i < match_ct; match_i += 2)
+				// layer.name format: "base_name bone(bone_name) slot(slot_name)"
+				var match = file.layer_name.match(/bone\((.*)\)/);
+				if (match)
 				{
-					if (match[match_i] == "bone")
-					{
-						var bone_name = match[match_i+1];
-						bone = findBoneByName(root_bone, bone_name);
-					}
+					var bone_name = match[1];
+					bone = findBoneByName(root_bone, bone_name);
 				}
 
 				if (!bone)
 				{
 					// layer.name format: "base_name"
-					var bone_name = match[0];
+					var bone_name = file.layer_name;
 					bone = findBoneByName(root_bone, bone_name);
 				}
 
 				if (!bone)
 				{
 					// group.name format: "base_name bone(bone_name)"
-					var match = folder.group_name.match(/\w+/g);
-					for (var match_i = 1, match_ct = match.length; match_i < match_ct; match_i += 2)
+					var match = folder.group_name.match(/bone\((.*)\)/);
+					if (match)
 					{
-						if (match[match_i] == "bone")
-						{
-							var bone_name = match[match_i+1];
-							bone = findBoneByName(root_bone, bone_name);
-						}
+						var bone_name = match[1];
+						bone = findBoneByName(root_bone, bone_name);
 					}
 
 					if (!bone)
 					{
 						// group.name format: "base_name"
-						var bone_name = match[0];
+						var bone_name = folder.group_name;
 						bone = findBoneByName(root_bone, bone_name);
 					}
 				}
 
+				if (!bone)
+				{
+					bone = root_bone;
+				}
+
 				if (bone)
 				{
-					object.parent = bone;
+					object.bone = bone;
 					object.local_x = object.x - bone.x;
 					object.local_y = object.y - bone.y;
 				}
 				else
 				{
-					object.parent = null;
+					object.bone = null;
 					object.local_x = object.x;
 					object.local_y = object.y;
 				}
@@ -282,6 +281,29 @@ function main()
 				object.local_angle = 0;
 				object.local_scale_x = 1;
 				object.local_scale_y = 1;
+
+				// find a slot with the same name
+				var slot = null;
+
+				// layer.name format: "base_name bone(bone_name) slot(slot_name)"
+				var match = file.layer_name.match(/\s+slot\((.*)\)(\**)/);
+				if (match)
+				{
+					var slot_name = match[1];
+					var slot_default_attachment_flag = match[2];
+					slot = {};
+					slot.name = slot_name;
+					slot.default_attachment_flag = slot_default_attachment_flag == "*";
+				}
+
+				if (slot)
+				{
+					object.slot = slot;
+				}
+				else
+				{
+					object.slot = null;
+				}
 
 				objects.push(object);
 			}
@@ -376,7 +398,7 @@ function main()
 				{
 					var object = objects[object_i];
 
-					if (object.parent == bone)
+					if (object.bone == bone)
 					{
 						object.fix_local_angle -= bone_local_angle;
 
@@ -452,7 +474,7 @@ function main()
 			scml.writeln(
 				"\t\t\t\t\t<object_ref" + 
 				" id=\"" + object.id + "\"" + 
-				((object.parent)?(" parent=\"" + object.parent.id + "\""):("")) + 
+				((object.bone)?(" parent=\"" + object.bone.id + "\""):("")) + 
 				" timeline=\"" + timeline_id + "\"" + 
 				" key=\"0\"" + 
 				" z_index=\"" + object.id + "\"" + 
@@ -504,13 +526,16 @@ function main()
 	/* scope */ ;(function () // generate Spine JSON skeleton
 	{
 		var json = {};
-		//json.bones = {}; // version < 1.0.9
+		json.skeleton = {};
+		json.skeleton.spine = "1.9.17";
+		json.skeleton.hash = ""; // TODO
+		json.skeleton.width = 0; // TODO
+		json.skeleton.height = 0; // TODO
 		json.bones = [];
 		if (root_bone)
 		{
 			var writeBone = function (bone)
 			{
-				//var json_bone = json.bones[bone.name] = {}; // version < 1.0.9
 				var json_bone = {};
 				json.bones.push(json_bone);
 				json_bone.name = bone.name;
@@ -532,46 +557,83 @@ function main()
 		{
 			json.bones.push({ name: "root" }); // need at least one root bone
 		}
-		//json.slots = {}; // version < 1.0.9
 		json.slots = [];
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
 		{
 			var object = objects[object_i];
+
 			var folder = folders[object.folder];
 			var file = folder.files[object.file];
-			//var json_slot = json.slots[file.base_name] = {}; // version < 1.0.9
-			var json_slot = {};
-			json.slots.push(json_slot);
-			var bone_name = "root"; // need at least one root bone
-			if (root_bone && object.parent)
+
+			var path_name = ((folder.name.length > 0)?(folder.name + "/"):(""));
+
+			if (object.slot)
 			{
-				bone_name = object.parent.name;
+				var skip = false;
+				for (var i = 0, ct = json.slots.length; i < ct; ++i)
+				{
+					if (json.slots[i].name == object.slot.name)
+					{
+						if (object.slot.default_attachment_flag)
+						{
+							json.slots[i].attachment = path_name + file.base_name;
+						}
+
+						skip = true;
+						break;
+					}
+				}
+				if (skip) { continue; }
 			}
-			json_slot.name = file.base_name;//bone_name;
+
+			var json_slot = {};
+			var bone_name = "root"; // need at least one root bone
+			if (object.bone) { bone_name = object.bone.name; }
+			var slot_name = file.base_name;//bone_name;
+			if (object.slot) { slot_name = object.slot.name; }
+			json_slot.name = slot_name;
 			json_slot.bone = bone_name;
-			json_slot.attachment = file.base_name;
+			json_slot.attachment = path_name + file.base_name;
+			json.slots.push(json_slot);
 		}
 		json.skins = {};
-		var skin = json.skins[doc.name.replace(".psd", "")] = {};
+		//var skin = json.skins[doc.name.replace(".psd", "")] = {};
+		var skin = json.skins["default"] = {};
 		for (object_i = 0, object_ct = objects.length; object_i < object_ct; ++object_i)
 		{
 			var object = objects[object_i];
 			var folder = folders[object.folder];
 			var file = folder.files[object.file];
-			var slot_name = file.base_name;
+			var bone_name = "root"; // need at least one root bone
+			if (object.bone) { bone_name = object.bone.name; }
+			var slot_name = file.base_name;//bone_name;
+			if (object.slot) { slot_name = object.slot.name; }
 			var json_attachment = skin[slot_name] || (skin[slot_name] = {});
 			var json_file = json_attachment[file.base_name] = {};
 			var x = object.local_x + (file.width / 2);
 			var y = object.local_y - (file.height / 2);
+			json_file.name = file.path_name + file.base_name;
 			json_file.x = round(x, 2);
 			json_file.y = round(y, 2);
-			json_file.name = file.path_name + file.base_name;
 			json_file.width = 0 | file.width;
 			json_file.height = 0 | file.height;
 		}
 
 		var json_file = new File(out_path + "/" + doc.name.replace(".psd", ".json"));
 		json_file.encoding = "UTF-8";
+
+		if (json_file.exists)
+		{
+			json_file.open("r");
+			var existing_json = JSON.parse(json_file.read());
+			json_file.close();
+
+			if (existing_json.animations)
+			{
+				json.animations = existing_json.animations;
+			}
+		}
+
 		json_file.open("w");
 		json_file.write(JSON.stringify(json, null, '\t'));
 		json_file.close();
@@ -603,14 +665,14 @@ function main()
 			for (var group_i = 0, group_ct = parent_group.layerSets.length; group_i < group_ct; ++group_i)
 			{
 				var group = parent_group.layerSets[group_i];
-				var group_base_name = group.name.match(/\w+/g)[0]; // extract first word from group name
+				var group_base_name = group.name.split(" ")[0]; // extract first word from group name
 				parseFolder(group, path_name + group_base_name);
 			}
 
 			for (var layer_i = 0, layer_ct = parent_group.artLayers.length; layer_i < layer_ct; ++layer_i)
 			{
 				var layer = parent_group.artLayers[layer_i];
-				var layer_base_name = layer.name.match(/\w+/g)[0]; // extract first word from layer name
+				var layer_base_name = layer.name.split(" ")[0]; // extract first word from layer name
 				var png_name = out_path + "/" + path_name + layer_base_name + ".png";
 				var png = new File(png_name);
 				if (!png.exists || true)
