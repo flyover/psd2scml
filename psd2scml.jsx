@@ -359,16 +359,22 @@ function main()
 					var child_bone = bone.bones[0];
 					var dx = child_bone.x - bone.x;
 					var dy = child_bone.y - bone.y;
-					bone_local_angle = Math.atan2(dy, dx);
-					bone_local_scale_x = Math.sqrt(dx*dx + dy*dy) / 200;
+					if ((Math.abs(dx) > 0) && (Math.abs(dy) > 0))
+					{
+						bone_local_angle = Math.atan2(dy, dx);
+						bone_local_scale_x = Math.sqrt(dx*dx + dy*dy) / 200;
+					}
 				}
 				else if (bone.parent)
 				{
 					// else, if bone has parent, point away from parent
 					var dx = bone.x - bone.parent.x;
 					var dy = bone.y - bone.parent.y;
-					bone_local_angle = Math.atan2(dy, dx);
-					bone_local_scale_x = Math.sqrt(dx*dx + dy*dy) / 200;
+					if ((Math.abs(dx) > 0) && (Math.abs(dy) > 0))
+					{
+						bone_local_angle = Math.atan2(dy, dx);
+						bone_local_scale_x = Math.sqrt(dx*dx + dy*dy) / 200;
+					}
 				}
 
 				// adjust bone angle
