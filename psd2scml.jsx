@@ -228,7 +228,7 @@ function main()
 				var bone = null;
 
 				// layer.name format: "base_name bone(bone_name) slot(slot_name)"
-				var match = file.layer_name.match(/bone\((.*)\)/);
+				var match = file.layer_name.match(/bone\((\w+)\)/);
 				if (match)
 				{
 					var bone_name = match[1];
@@ -245,7 +245,7 @@ function main()
 				if (!bone)
 				{
 					// group.name format: "base_name bone(bone_name)"
-					var match = folder.group_name.match(/bone\((.*)\)/);
+					var match = folder.group_name.match(/bone\((\w+)\)/);
 					if (match)
 					{
 						var bone_name = match[1];
@@ -286,7 +286,7 @@ function main()
 				var slot = null;
 
 				// layer.name format: "base_name bone(bone_name) slot(slot_name)"
-				var match = file.layer_name.match(/\s+slot\((.*)\)(\**)/);
+				var match = file.layer_name.match(/slot\((\w+)\)(\**)/);
 				if (match)
 				{
 					var slot_name = match[1];
