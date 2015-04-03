@@ -1,9 +1,10 @@
 {
 	"skeleton": {
-		"spine": "1.9.17",
+		"spine": "2.1.27",
 		"hash": "",
 		"width": 0,
-		"height": 0
+		"height": 0,
+		"images": ""
 	},
 	"bones": [
 		{
