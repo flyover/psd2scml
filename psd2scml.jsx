@@ -533,10 +533,11 @@ function main()
 	{
 		var json = {};
 		json.skeleton = {};
-		json.skeleton.spine = "1.9.17";
+		json.skeleton.spine = "2.1.27";
 		json.skeleton.hash = ""; // TODO
 		json.skeleton.width = 0; // TODO
 		json.skeleton.height = 0; // TODO
+		json.skeleton.images = ""; // TODO
 		json.bones = [];
 		if (root_bone)
 		{
