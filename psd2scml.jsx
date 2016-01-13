@@ -1,6 +1,6 @@
 #target photoshop
 
-#include "JSON-js/json.js"
+#include "JSON-js/json2.js"
 
 function round(number, digits)
 {
@@ -460,11 +460,11 @@ function main()
 			var writeBone = function (bone)
 			{
 				scml.writeln(
-					"\t\t\t\t\t<bone_ref" + 
-					" id=\"" + bone.id + "\"" + 
-					((bone.parent)?(" parent=\"" + bone.parent.id + "\""):("")) + 
-					" timeline=\"" + timeline_id + "\"" + 
-					" key=\"0\"" + 
+					"\t\t\t\t\t<bone_ref" +
+					" id=\"" + bone.id + "\"" +
+					((bone.parent)?(" parent=\"" + bone.parent.id + "\""):("")) +
+					" timeline=\"" + timeline_id + "\"" +
+					" key=\"0\"" +
 					"/>");
 				++timeline_id;
 				for (var i = 0, ct = bone.bones.length; i < ct; ++i)
@@ -478,12 +478,12 @@ function main()
 		{
 			var object = objects[object_i];
 			scml.writeln(
-				"\t\t\t\t\t<object_ref" + 
-				" id=\"" + object.id + "\"" + 
-				((object.bone)?(" parent=\"" + object.bone.id + "\""):("")) + 
-				" timeline=\"" + timeline_id + "\"" + 
-				" key=\"0\"" + 
-				" z_index=\"" + object.id + "\"" + 
+				"\t\t\t\t\t<object_ref" +
+				" id=\"" + object.id + "\"" +
+				((object.bone)?(" parent=\"" + object.bone.id + "\""):("")) +
+				" timeline=\"" + timeline_id + "\"" +
+				" key=\"0\"" +
+				" z_index=\"" + object.id + "\"" +
 				"/>");
 			++timeline_id;
 		}
@@ -792,4 +792,3 @@ function removeAllEmptyLayerSets(obj) {
 	}
 	return foundEmpty;
 }
-
